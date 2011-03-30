@@ -1,0 +1,36 @@
+<script>
+
+var videos = new Array();
+videos[0] = "http://youtube.com/test0";	
+videos[1] = "http://youtube.com/test1";	
+//videos[2] = "http://youtube.com/test211111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
+videos[2] = "http://youtube.com/test2";
+
+function echo(message){
+	console.log(message);
+	return "Welcome " + message;
+}
+
+function getAllVideos(){
+	return videos;	
+}
+
+function deleteVideo(videoUrl){
+	var indexOfVideoToRemove = findVideo(videoUrl);
+	videos.splice(indexOfVideoToRemove, 1);
+}
+
+function insertVideo(videoUrl){
+	var numberOfVideos = videos.length;
+	videos[numberOfVideos] = videoUrl;
+}
+
+function findVideo(videoUrl){
+	for(var i=0; i < videos.length; i++){
+		if(videos[i] == videoUrl){
+			return i;
+		}
+	}
+}
+
+</script>
