@@ -43,9 +43,10 @@ function drawVideo(video){
 	var deleteLink = document.createElement("a");
 	deleteLink.setAttribute("href", "#");
 	deleteLink.setAttribute("onclick", "deleteVideo(\"" + video + "\")");
+	deleteLink.setAttribute("style", "vertical-align: middle");
 	var deleteIcon = document.createElement("image");
 	deleteIcon.src = "/img/delete.png";
-	deleteIcon.setAttribute("style", "width:15px; height=15px; margin-right: 5px;");
+	deleteIcon.setAttribute("style", "width:15px; margin-right: 5px;");
 	deleteLink.appendChild(deleteIcon);
 	rowDiv.appendChild(deleteLink);
 	
