@@ -14,11 +14,16 @@ body {
 
 </style>
 
+<script type="text/javascript" src="/js/AddVideoWidget.js"></script>
 <script type="text/javascript">
 
 var watchListDao = chrome.extension.getBackgroundPage();
 
 function init(){
+	//TODO refactor all this code before moving on!!! try using different files/classes
+	//with methods like "drawYourself", etc.
+	//new AddVideoWidget().sayHello();
+
 	loadUrlInBox();
 	drawWatchList();
 }
