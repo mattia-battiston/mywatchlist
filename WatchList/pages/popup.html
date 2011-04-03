@@ -22,16 +22,9 @@ var watchListDao = chrome.extension.getBackgroundPage();
 function init(){
 	//TODO refactor all this code before moving on!!! try using different files/classes
 	//with methods like "drawYourself", etc.
-	//new AddVideoWidget().sayHello();
+	new AddVideoWidget().init();
 
-	loadUrlInBox();
 	drawWatchList();
-}
-
-function loadUrlInBox(){
-	chrome.tabs.getSelected(null, function(tab) {
-		document.getElementById("addVideoUrl").value = tab.url;
-	});
 }
 
 function drawWatchList(){
