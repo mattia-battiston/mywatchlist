@@ -1,11 +1,12 @@
-function echo(message) {
-	console.log(message);
-}
-
 function AddVideoWidget() {
-	console.log("creo widget AddVideo");
 }
 
-AddVideoWidget.prototype.sayHello = function() {
-	console.log('hello');
+AddVideoWidget.prototype.init = function() {
+	this.loadUrlInBox();
 };
+
+AddVideoWidget.prototype.loadUrlInBox = function() {
+	chrome.tabs.getSelected(null, function(tab) {
+		document.getElementById("addVideoUrl").value = tab.url;
+	});
+}
