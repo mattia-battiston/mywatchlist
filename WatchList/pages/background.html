@@ -1,10 +1,10 @@
 <script>
 
 var videos = new Array();
-videos[0] = "http://youtube.com/test0";	
-videos[1] = "http://youtube.com/test1";	
+videos[0] = {url:"http://youtube.com/test0"};	
+videos[1] = {url:"http://youtube.com/test1"};	
 //videos[2] = "http://youtube.com/test211111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
-videos[2] = "http://youtube.com/test2";
+videos[2] = {url:"http://youtube.com/test2"};
 
 function echo(message){
 	console.log(message);
@@ -12,6 +12,7 @@ function echo(message){
 }
 
 function getAllVideos(){
+	//TODO must return an array of VideoObject 
 	return videos;	
 }
 
