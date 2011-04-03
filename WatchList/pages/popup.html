@@ -15,64 +15,16 @@ body {
 </style>
 
 <script type="text/javascript" src="/js/AddVideoWidget.js"></script>
+<script type="text/javascript" src="/js/VideoList.js"></script>
 <script type="text/javascript">
 
 var watchListDao = chrome.extension.getBackgroundPage();
+var addVideoWidget = new AddVideoWidget();
+var videoList = new VideoList();
 
 function init(){
-	//TODO refactor all this code before moving on!!! try using different files/classes
-	//with methods like "drawYourself", etc.
-	new AddVideoWidget().init();
-
-	drawWatchList();
-}
-
-function drawWatchList(){
-	var videos = watchListDao.getAllVideos();
-
-	for(var i = 0; i < videos.length; i++) {
-		drawVideo(videos[i])
-	}
-}
-
-function drawVideo(video){
-	var rowDiv = document.createElement("div");
-	
-	var deleteLink = document.createElement("a");
-	deleteLink.setAttribute("href", "#");
-	deleteLink.setAttribute("onclick", "deleteVideo(\"" + video + "\")");
-	deleteLink.setAttribute("style", "vertical-align: middle");
-	var deleteIcon = document.createElement("image");
-	deleteIcon.src = "/img/delete.png";
-	deleteIcon.setAttribute("style", "width:15px; margin-right: 5px;");
-	deleteLink.appendChild(deleteIcon);
-	rowDiv.appendChild(deleteLink);
-	
-	var link = document.createElement("a");
-	link.setAttribute("href", "#");
-	link.setAttribute("onclick", "openUrlInNewTab(\"" + video + "\")");
-	var videoUrl = document.createTextNode(video);
-	link.appendChild(videoUrl);
-	rowDiv.appendChild(link);
-	
-	document.getElementById('videoList').appendChild(rowDiv);
-}
-
-function openUrlInNewTab(targetUrl){
-	var createProperties = new Object();
-	createProperties.url = targetUrl;
-	chrome.tabs.create(createProperties);
-}
-
-function deleteVideo(videoUrl){
-	watchListDao.deleteVideo(videoUrl);
-	refresh();
-}
-
-function addVideo(){
-	var videoUrl = document.getElementById("addVideoUrl").value;
-	watchListDao.insertVideo(videoUrl);
-	refresh();
+	addVideoWidget.init();
+	videoList.init();
 }
 
 function refresh(){
@@ -87,7 +39,7 @@ function refresh(){
 
 <div id="addVideo">
 Add to my WatchList:<br/>
-<input type="text" id="addVideoUrl" /> <input type="submit" value="Add" onclick="addVideo();"/>	
+<input type="text" id="addVideoUrl" /> <input type="submit" value="Add" onclick="addVideoWidget.addVideo();"/>	
 </div>
 
 <hr/>
