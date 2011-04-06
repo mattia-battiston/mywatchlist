@@ -28,6 +28,16 @@ function init(){
 	videoList.init();
 }
 
+function deleteVideo(id){
+	videoList.deleteVideo(id);
+	refresh();
+}
+
+function openVideoInNewTab(id){
+	videoList.openVideoInNewTab(id);
+	refresh();
+}
+
 function refresh(){
 	window.location.reload();
 }

@@ -16,3 +16,19 @@ VideoList.prototype.drawVideoList = function() {
 		this.videoListRows[i].drawVideo();
 	}
 }
+
+VideoList.prototype.openVideoInNewTab = function(videoObjectId) {
+	this.getVideoListRow(videoObjectId).openVideoInNewTab();
+}
+
+VideoList.prototype.deleteVideo = function(videoObjectId) {
+	this.getVideoListRow(videoObjectId).deleteVideo();
+}
+
+VideoList.prototype.getVideoListRow = function(videoObjectId){
+	for(var i = 0; i < this.videoListRows.length; i++) {
+		if(this.videoListRows[i].isVideoWithId(videoObjectId)){
+			return this.videoListRows[i];
+		}
+	}
+}
