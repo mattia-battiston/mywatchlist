@@ -22,8 +22,10 @@ function deleteVideo(videoUrl){
 }
 
 function insertVideo(videoUrl){
+	var newId = getMaxId() + 1;
 	var numberOfVideos = videos.length;
-	videos[numberOfVideos] = videoUrl;
+	videoObject = {id: newId, url: videoUrl};
+	videos[numberOfVideos] = videoObject;
 }
 
 function findVideo(videoUrl){
@@ -32,6 +34,16 @@ function findVideo(videoUrl){
 			return i;
 		}
 	}
+}
+
+function getMaxId(){
+	var max = 0;
+	for(var i=0; i < videos.length; i++){
+		if(videos[i].id > max){
+			max = videos[i].id;
+		}
+	}
+	return max;
 }
 
 </script>
