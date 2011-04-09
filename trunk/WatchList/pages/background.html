@@ -1,19 +1,28 @@
+<html>
+
+<head>
+<script type="text/javascript" src="/js/model/Video.js"></script>
 <script>
 
-var videos = new Array();
-videos[0] = {id: "1", url:"http://youtube.com/test0"};	
-videos[1] = {id: "2", url:"http://youtube.com/test1"};	
-//videos[2] = "http://youtube.com/test211111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
-videos[2] = {id: "3", url:"http://youtube.com/test2"};
+var VIDEO_ID_SEQUENCE = "SEQUENCE_VIDEO_ID";
 
-function echo(message){
-	console.log(message);
-	return "Welcome " + message;
+var videos = new Array();
+//videos[0] = {id: "1", url:"http://youtube.com/test0"};	
+//videos[1] = {id: "2", url:"http://youtube.com/test1"};	
+//videos[2] = "http://youtube.com/test211111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
+//videos[2] = {id: "3", url:"http://youtube.com/test2"};
+
+function init(){
+	ensureVideoIdSequenceIsInitialized();
+	ensureWatchListTableIsInitalized();
 }
 
 function getAllVideos(){
-	//TODO must return an array of VideoObject 
-	return videos;	
+	return JSON.parse(localStorage["WatchList"],function (key, value) {
+		if(key == "id")
+			return parseInt(value);
+		return value;
+	});	
 }
 
 function deleteVideo(videoUrl){
@@ -21,11 +30,14 @@ function deleteVideo(videoUrl){
 	videos.splice(indexOfVideoToRemove, 1);
 }
 
-function insertVideo(videoUrl){
-	var newId = getMaxId() + 1;
-	var numberOfVideos = videos.length;
-	videoObject = {id: newId, url: videoUrl};
-	videos[numberOfVideos] = videoObject;
+function insertVideo(title, url){
+	var video = new Video();
+	video.id = getNextId();
+	video.title = title;
+	video.url = url;
+	var videos = getAllVideos();
+	videos[videos.length] = video;
+	localStorage["WatchList"] = JSON.stringify(videos);
 }
 
 function findVideo(videoUrl){
@@ -36,14 +48,23 @@ function findVideo(videoUrl){
 	}
 }
 
-function getMaxId(){
-	var max = 0;
-	for(var i=0; i < videos.length; i++){
-		if(videos[i].id > max){
-			max = videos[i].id;
-		}
-	}
-	return max;
+function ensureVideoIdSequenceIsInitialized(){
+	if(localStorage[VIDEO_ID_SEQUENCE] == null)
+		localStorage[VIDEO_ID_SEQUENCE] = 0;
+}
+
+function ensureWatchListTableIsInitalized(){
+	if(localStorage["WatchList"] == null)
+		localStorage["WatchList"] = "[]";
+}
+
+function getNextId(){
+	var sequenceVal = localStorage[VIDEO_ID_SEQUENCE];
+	sequenceVal = sequenceVal + 1;
+	localStorage[VIDEO_ID_SEQUENCE] = sequenceVal;
+	return sequenceVal;
 }
 
 </script>
+</head>
+</html>

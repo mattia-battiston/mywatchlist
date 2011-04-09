@@ -12,6 +12,6 @@ AddVideoWidget.prototype.loadUrlInBox = function() {
 
 AddVideoWidget.prototype.addVideo = function(){
 	var videoUrl = document.getElementById("addVideoUrl").value;
-	watchListDao.insertVideo(videoUrl);
+	watchListDao.insertVideo("my new video", videoUrl);
 	refresh();
 }
