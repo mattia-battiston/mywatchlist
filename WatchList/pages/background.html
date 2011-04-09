@@ -25,11 +25,14 @@ function getAllVideos(){
 	});	
 }
 
-function deleteVideo(videoUrl){
-	var indexOfVideoToRemove = findVideo(videoUrl);
+function deleteVideo(video){
+	var videos = getAllVideos();
+	var indexOfVideoToRemove = findVideo(videos, video);
 	videos.splice(indexOfVideoToRemove, 1);
+	localStorage["WatchList"] = JSON.stringify(videos);
 }
 
+//TODO it seems a better idea to insert one row for each video, try to reimplement the DAO that way
 function insertVideo(title, url){
 	var video = new Video();
 	video.id = getNextId();
@@ -40,9 +43,9 @@ function insertVideo(title, url){
 	localStorage["WatchList"] = JSON.stringify(videos);
 }
 
-function findVideo(videoUrl){
+function findVideo(videos, video){
 	for(var i=0; i < videos.length; i++){
-		if(videos[i] == videoUrl){
+		if(videos[i].id == video.id){
 			return i;
 		}
 	}
@@ -59,7 +62,7 @@ function ensureWatchListTableIsInitalized(){
 }
 
 function getNextId(){
-	var sequenceVal = localStorage[VIDEO_ID_SEQUENCE];
+	var sequenceVal = parseInt(localStorage[VIDEO_ID_SEQUENCE]);
 	sequenceVal = sequenceVal + 1;
 	localStorage[VIDEO_ID_SEQUENCE] = sequenceVal;
 	return sequenceVal;
