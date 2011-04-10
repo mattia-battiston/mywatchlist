@@ -1,6 +1,6 @@
 {
   "name": "WatchList",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "List videos you'll want to watch",
   "browser_action": {
     "default_icon": "icon/video icon 3.jpg",
