@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "List videos you'll want to watch",
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icon/video icon 3.jpg",
     "popup": "pages/popup.html"
   },
   "permissions": [
