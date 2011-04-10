@@ -12,6 +12,15 @@ body {
   overflow: auto;
 }
 
+#addVideoTitle{
+  width: 200px;
+}
+
+#addVideoButton{
+  width: 50px;
+  height: 25px;
+}
+
 </style>
 
 <script type="text/javascript" src="/js/AddVideoWidget.js"></script>
@@ -51,7 +60,9 @@ function refresh(){
 
 <div id="addVideo">
 Add to my WatchList:<br/>
-<input type="text" id="addVideoUrl" /> <input type="submit" value="Add" onclick="addVideoWidget.addVideo();"/>	
+<input type="text" id="addVideoTitle" /> 
+<input type="hidden" id="addVideoUrl" /> 
+<input id="addVideoButton" type="submit" value="Add" onclick="addVideoWidget.addVideo();" />	
 </div>
 
 <hr/>
