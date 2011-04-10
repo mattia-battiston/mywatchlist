@@ -9,7 +9,7 @@ AddVideoWidget.prototype.loadUrlInBox = function() {
 		document.getElementById("addVideoTitle").value = tab.title;
 		document.getElementById("addVideoUrl").value = tab.url;
 		
-		selectText();
+		makeTitleTextSelected();
 	});
 }
 
@@ -20,7 +20,7 @@ AddVideoWidget.prototype.addVideo = function(){
 	refresh();
 }
 
-function selectText(){
+function makeTitleTextSelected(){
 	document.getElementById("addVideoTitle").focus();
     document.getElementById("addVideoTitle").select();
 }
