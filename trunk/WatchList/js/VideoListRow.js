@@ -4,23 +4,26 @@ function VideoListRow(videoObject) {
 
 VideoListRow.prototype.drawVideo = function(){
 	var rowDiv = document.createElement("div");
+	rowDiv.setAttribute("class", "videoListRow");
 	
 	var deleteLink = document.createElement("a");
 	deleteLink.setAttribute("href", "#");
 	deleteLink.setAttribute("onclick", "deleteVideo(\"" + this.videoObject.id + "\")");
 	deleteLink.setAttribute("style", "vertical-align: middle");
+	rowDiv.appendChild(deleteLink);
+	
 	var deleteIcon = document.createElement("image");
 	deleteIcon.src = "/img/delete.png";
 	deleteIcon.setAttribute("style", "width:15px; margin-right: 5px;");
 	deleteLink.appendChild(deleteIcon);
-	rowDiv.appendChild(deleteLink);
 	
 	var link = document.createElement("a");
 	link.setAttribute("href", "#");
 	link.setAttribute("onclick", "openVideoInNewTab(\"" + this.videoObject.id + "\")");
+	rowDiv.appendChild(link);
+	
 	var videoUrl = document.createTextNode(this.videoObject.title);
 	link.appendChild(videoUrl);
-	rowDiv.appendChild(link);
 	
 	document.getElementById('videoList').appendChild(rowDiv);
 }
