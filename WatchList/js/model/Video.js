@@ -1,5 +1,5 @@
 function Video() {
-	var id;
-	var title;
-	var url;
+	this.id;
+	this.title;
+	this.url;
 }
