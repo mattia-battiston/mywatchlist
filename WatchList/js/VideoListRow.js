@@ -18,7 +18,7 @@ VideoListRow.prototype.drawVideo = function(){
 	var link = document.createElement("a");
 	link.setAttribute("href", "#");
 	link.setAttribute("onclick", "openVideoInNewTab(\"" + this.videoObject.id + "\")");
-	var videoUrl = document.createTextNode(this.videoObject.url);
+	var videoUrl = document.createTextNode(this.videoObject.title);
 	link.appendChild(videoUrl);
 	rowDiv.appendChild(link);
 	
