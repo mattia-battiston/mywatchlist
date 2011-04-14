@@ -1,0 +1,23 @@
+<project name="WatchList" default="main">
+
+	<target name="clean">
+		<delete dir="dist" />
+	</target>
+	
+	<target name="init">
+		<mkdir dir="dist"/>
+	</target>
+	
+	<target name="main" depends="clean,init" description="builds the zip of the packaged app ready to be deployed">
+		<zip destfile="dist/WatchList.zip">
+			<fileset dir=".">
+				<exclude name="dist/"/>
+				<exclude name="icon/old/"/>
+				<exclude name="screenshots/"/>
+				<exclude name="build.xml"/>
+				<exclude name=".project"/>
+			</fileset>
+		</zip>
+	</target>
+	
+</project>
