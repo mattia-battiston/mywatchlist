@@ -1,7 +1,7 @@
 {
   "name": "WatchList",
   "version": "1.0.0",
-  "description": "List videos you'll want to watch",
+  "description": "Add videos to your WatchList to view later",
   "browser_action": {
     "default_icon": "icon/icon_19.png",
     "popup": "pages/popup.html"
