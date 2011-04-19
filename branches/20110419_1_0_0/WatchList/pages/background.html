@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<script type="text/javascript" src="/js/model/Video.js"></script>
+<script>
+
+var VIDEO_ID_SEQUENCE = "SEQUENCE_VIDEO_ID";
+
+var videos = new Array();
+//videos[0] = {id: "1", url:"http://youtube.com/test0"};	
+//videos[1] = {id: "2", url:"http://youtube.com/test1"};	
+//videos[2] = "http://youtube.com/test211111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
+//videos[2] = {id: "3", url:"http://youtube.com/test2"};
+
+function init(){
+	ensureVideoIdSequenceIsInitialized();
+	ensureWatchListTableIsInitalized();
+}
+
+function getAllVideos(){
+	return JSON.parse(localStorage["WatchList"],function (key, value) {
+		if(key == "id")
+			return parseInt(value);
+		return value;
+	});	
+}
+
+function deleteVideo(video){
+	var videos = getAllVideos();
+	var indexOfVideoToRemove = findVideo(videos, video);
+	videos.splice(indexOfVideoToRemove, 1);
+	localStorage["WatchList"] = JSON.stringify(videos);
+}
+
+//TODO it seems a better idea to insert one row for each video, try to reimplement the DAO that way
+function insertVideo(title, url){
+	var video = new Video();
+	video.id = getNextId();
+	video.title = title;
+	video.url = url;
+	var videos = getAllVideos();
+	videos[videos.length] = video;
+	localStorage["WatchList"] = JSON.stringify(videos);
+}
+
+function findVideo(videos, video){
+	for(var i=0; i < videos.length; i++){
+		if(videos[i].id == video.id){
+			return i;
+		}
+	}
+}
+
+function ensureVideoIdSequenceIsInitialized(){
+	if(localStorage[VIDEO_ID_SEQUENCE] == null)
+		localStorage[VIDEO_ID_SEQUENCE] = 0;
+}
+
+function ensureWatchListTableIsInitalized(){
+	if(localStorage["WatchList"] == null)
+		localStorage["WatchList"] = "[]";
+}
+
+function getNextId(){
+	var sequenceVal = parseInt(localStorage[VIDEO_ID_SEQUENCE]);
+	sequenceVal = sequenceVal + 1;
+	localStorage[VIDEO_ID_SEQUENCE] = sequenceVal;
+	return sequenceVal;
+}
+
+</script>
+</head>
+</html>
