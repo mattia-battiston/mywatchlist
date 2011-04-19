@@ -1,6 +1,6 @@
 {
   "name": "WatchList",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Add videos to your WatchList to view later",
   "browser_action": {
     "default_icon": "icon/icon_19.png",
