@@ -1,0 +1,1 @@
+Chrome extension for keeping a list of videos to watch. Install at https://chrome.google.com/extensions/detail/hjpibcmhmenopbigkfbjifoecneehoke
